@@ -5,12 +5,14 @@ id= 1000
 VALID_BLOOD_GROUPS = frozenset(
     {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}
 )
+
 # Task: In utils.py, write a function clean_name(raw_name) that:
 # removes leading/trailing spaces
 # collapses multiple spaces between words into one
 # capitalises each word (Title Case)
 # returns the cleaned string
 # clean_name(" john DOE ") must return "John Doe".
+
 def clean_name(raw):
     clean = raw.strip()
     clean = " ".join(clean.split())
@@ -18,7 +20,6 @@ def clean_name(raw):
     return clean
 
 # print(clean_name("harpal singh"))
-
 # Task: In utils.py, write is_valid_blood_group(bg) that returns True/False depending on whether bg (after .strip().upper()) is in VALID_BLOOD_GROUPS.
 
 def is_valid_blood_group(bg):
@@ -35,8 +36,6 @@ def is_valid_blood_group(bg):
 # import random at the top.
 # Create a module-level variable _id_counter = 1000.
 # Write generate_patient_id() that uses global _id_counter, increments it by 1, adds a random 4-digit suffix, and returns a string like "PAT-1001-8842".
-
-
 
 def generate_patient_id():
     global id
