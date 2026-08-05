@@ -1,5 +1,5 @@
 import random
-
+from datetime import datetime,timedelta
 id= 1000
 # Task: Start a new file meditrack/utils.py. At the top, create a constant VALID_BLOOD_GROUPS as a frozenset of the 8 blood groups (A+ A- B+ B- AB+ AB- O+ O-).
 VALID_BLOOD_GROUPS = frozenset(
@@ -44,3 +44,22 @@ def generate_patient_id():
     return f"PAT-{id}-{suffix}"
 
 # print(generate_patient_id())
+
+# in utils.py and from datetime import datetime,timedelta, then write :
+# -today str() return todays date as yyyy-mm-dd
+# -calculate_age(dob_str) return a persons age in whole year from their dob
+
+def today_str():
+    return datetime.now().strftime("%Y-%m-%d")
+
+def calculate_age(dob_str):
+    dob=datetime.strptime(dob_str,"%Y-%m-%d")
+    today=datetime.now()
+    age = today.year-dob.year
+    if(today.month,today.day)<(dob.month,dob.day):
+        age-=1
+    return age
+
+# print(clean_name("    john"))
+
+# print(calculate_age("2000-01-10"))
