@@ -40,7 +40,46 @@ def average_age(patients,calculate_age):
 # (id, name, risk, label) -> "{pl'id']:<16) (p['name']:<16) risk=(score:>3) ((vitals.risk_label(score)}
 
 def patient_stream(patients):
-    pass
+    for patient in patients:
+        yield patient
 
-def risk_report_lines():
-    pass
+def risk_report_lines(patients):
+    for p in patients:
+        score = p["risk"]
+        label = vitals.risk_label(score)
+
+        yield f"{p['id']:<16} {p['name']:<16} risk={score:>3} {label}"
+
+# write first_high_risk(patients) that get an **iterator** over the
+# high-risk list and returns the first item using 'next()', returning 'None'
+# if there are none
+
+def first_high_risk(patients):
+    high=high_risk_patients(patients)
+    it=iter(high)
+    try:
+        return next(it)
+    except StopIteration:
+        return None
+
+# in analytics.py write:
+# count_department(node)-recursively count every department
+# list_department(node)-Recursively returns an **indented** list of names
+
+def count_department(node):
+    children=node.get('sub',node.get('department',[]))
+    total=0
+    for child in children:
+        total+=1+count_department(child)
+        print(child,total)
+    return total
+
+def list_departments(node, depth=0, acc=None):
+    if acc is None:
+        acc = []
+    name = node.get("name", "")
+    if name and depth > 0:
+        acc.append(("  " * (depth - 1)) + "- " + name)
+    for child in node.get("sub", node.get("departments", [])):
+        list_departments(child, depth + 1, acc)
+    return acc
