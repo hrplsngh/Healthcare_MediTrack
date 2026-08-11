@@ -1,9 +1,3 @@
-# Task: Create meditrack/data.py. In it, build a list called PATIENTS containing at least 3 patient dictionaries. Each patient must have these keys:
-# id (str), name (str), dob (str "YYYY-MM-DD"), gender (str)
-# blood_group (str), allergies (a set)
-# vitals (a nested dict with height_cm, weight_kg, systolic, diastolic, heart_rate, temperature_c)
-# visits (a list of tuples)
-
 PATIENTS = [
     {
         "id": "PAT-1001-4821",

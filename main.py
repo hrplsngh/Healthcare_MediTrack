@@ -34,16 +34,16 @@ def run_demo():
     show_all()
 
     # *args / **kwargs when adding a patient
-    print("\n>> Adding a new patient (Meera Iyer) via *args/**kwargs ...")
-    new_p = patients.add_patient(
-        "  meera   iyer ", "1998-03-19", "f", "ab+",
-        "aspirin", "latex",                       # *allergies
-        height_cm=160, weight_kg=90, systolic=150, diastolic=95,  # **extra
-    )
-    show_patient(new_p)
+    # print("\n>> Adding a new patient (Meera Iyer) via *args/**kwargs ...")
+    # new_p = patients.add_patient(
+    #     "  meera   iyer ", "1998-03-19", "f", "ab+",
+    #     "aspirin", "latex",                       # *allergies
+    #     height_cm=160, weight_kg=90, systolic=150, diastolic=95,  # **extra
+    # )
+    # show_patient(new_p)
 
     # add_visit with default date + *args reasons
-    patients.add_visit(new_p["id"], None, "Follow-up", "BP check")
+    # patients.add_visit(new_p["id"], None, "Follow-up", "BP check")
 
     # filter / lambda -> high-risk patients
     print("\n>> High-risk patients (filter + lambda):")
@@ -84,10 +84,10 @@ def run_demo():
     n = storage.save_patients(data.PATIENTS)
     print(f"   wrote {n} records to {storage.PATIENTS_FILE}")
 
-    print(">> Logging a visit to file (append mode 'a'):")
-    storage.log_visit(new_p["id"], new_p["name"], "Demo visit")
-    for entry in storage.read_visit_log():         # iterate the file
-        print(f"   {entry}")
+    # print(">> Logging a visit to file (append mode 'a'):")
+    # storage.log_visit(new_p["id"], new_p["name"], "Demo visit")
+    # for entry in storage.read_visit_log():         # iterate the file
+    #     print(f"   {entry}")
 
     print(">> Reloading patients from file (read mode 'r'):")
     reloaded = storage.load_patients()

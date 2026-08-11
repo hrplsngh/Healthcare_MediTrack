@@ -1,0 +1,6 @@
+id|name|dob|gender|blood_group|allergies|height_cm|weight_kg|systolic|diastolic|heart_rate|temperature_c
+PAT-1001-4821|Aarav Sharma|1990-05-14|M|O+|dust,penicillin|175.0|82.0|128|84|78|37.0
+PAT-1002-7734|Diya Patel|1985-11-22|F|A+||162.0|55.0|118|76|70|36.6
+PAT-1003-9012|Kabir Nair|1972-02-08|M|B-|sulfa|168.0|95.0|148|96|88|37.4
+PAT-1001-1930|Aniket Sharma|1992-01-01|M|O+||120.0|98.0|120|90|78|47.0
+PAT-1002-6656|Harpal Singh|2003-07-18|M|B+||172.0|72.0|120|80|77|97.0

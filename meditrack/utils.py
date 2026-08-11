@@ -1,79 +1,40 @@
 import random
-from datetime import datetime,timedelta
-id= 1000
-# Task: Start a new file meditrack/utils.py. At the top, create a constant VALID_BLOOD_GROUPS as a frozenset of the 8 blood groups (A+ A- B+ B- AB+ AB- O+ O-).
+from datetime import datetime, timedelta
+
 VALID_BLOOD_GROUPS = frozenset(
     {"A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"}
 )
 
-# Task: In utils.py, write a function clean_name(raw_name) that:
-# removes leading/trailing spaces
-# collapses multiple spaces between words into one
-# capitalises each word (Title Case)
-# returns the cleaned string
-# clean_name(" john DOE ") must return "John Doe".
-
-def clean_name(raw):
-    clean = raw.strip()
-    clean = " ".join(clean.split())
-    clean = clean.title()
-    return clean
-
-# print(clean_name("harpal singh"))
-# Task: In utils.py, write is_valid_blood_group(bg) that returns True/False depending on whether bg (after .strip().upper()) is in VALID_BLOOD_GROUPS.
+def clean_name(raw_name):
+    return ' '.join(raw_name.strip().split()).title()
 
 def is_valid_blood_group(bg):
-    bg = bg.strip()
-    bg = bg.upper()
-    if bg in VALID_BLOOD_GROUPS:
-        return True
-    else:
-        return False
+    return bg.strip().upper() in VALID_BLOOD_GROUPS
 
-# print(is_valid_blood_group("a+"))
-
-# Task: In utils.py:
-# import random at the top.
-# Create a module-level variable _id_counter = 1000.
-# Write generate_patient_id() that uses global _id_counter, increments it by 1, adds a random 4-digit suffix, and returns a string like "PAT-1001-8842".
-
+_id_counter = 1000
 def generate_patient_id():
-    global id
-    id += 1
-    suffix = random.randint(1000, 9999)
-    return f"PAT-{id}-{suffix}"
-
-# print(generate_patient_id())
-
-# in utils.py and from datetime import datetime,timedelta, then write :
-# -today str() return todays date as yyyy-mm-dd
-# -calculate_age(dob_str) return a persons age in whole year from their dob
+    global _id_counter
+    _id_counter += 1
+    random_suffix = random.randint(1000, 9999)
+    return f"PAT-{_id_counter}-{random_suffix}"
 
 def today_str():
-    return datetime.now().strftime("%Y-%m-%d")
+    return datetime.now().strftime('%Y-%m-%d')
 
 def calculate_age(dob_str):
-    dob=datetime.strptime(dob_str,"%Y-%m-%d")
-    today=datetime.now()
-    age = today.year-dob.year
-    if(today.month,today.day)<(dob.month,dob.day):
-        age-=1
+    dob = datetime.strptime(dob_str, '%Y-%m-%d')
+    today = datetime.now()
+    age = today.year - dob.year
+    if (today.month, today.day) < (dob.month, dob.day):
+        age -= 1
     return age
 
-# print(clean_name("    john"))
-
-# print(calculate_age("2000-01-10"))
-
-
-# In `utils.py`, write a generator
-#   `next_appointment_slots(start_hour=9, count=4, gap_minutes=30)` that `yield`s
-#   formatted time strings (e.g. `"09:00 AM"`, `"09:30 AM"`, ...).
-
-# Use `timedelta(minutes=gap_minutes * i)` inside a loop and
-#   `strftime("%I:%M %p")`.
-
 def next_appointment_slots(start_hour=9, count=4, gap_minutes=30):
-    base = datetime.now().replace(hour=start_hour, minute=0,second=0, microsecond=0)
+    """GENERATOR of appointment time strings.
+
+    Uses default parameters. Yields values lazily with `yield`"""
+    base = datetime.now().replace(hour=start_hour, minute=0,
+                                  second=0, microsecond=0)
     for i in range(count):
         slot = base + timedelta(minutes=gap_minutes * i)
         yield slot.strftime("%I:%M %p")
@@ -86,3 +47,12 @@ def divider(title=""):
     if title:
         return f"{line}\n  {title.upper()}\n{line}"
     return line
+
+if __name__ == '__main__':
+    print("HP")
+    print(clean_name("   john   DOE "))
+    print(is_valid_blood_group('o-'))
+    print(generate_patient_id())
+    print(type(today_str()))
+    print(calculate_age('2000-08-04'))
+    print(clean_name("   john   DOE "))
